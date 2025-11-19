@@ -1,3 +1,4 @@
+
 ###
 ## simple_package - Module statistics.py
 ## Basic statistics calculations
@@ -22,3 +23,42 @@
 ## 5) Also, do something and/or throw an exception/message if the
 ##    numpy and matplotlib packages are not installed.
 ##
+import numpy as np
+
+###
+## simple_package - Module statistics.py
+# ... (README instructions) ...
+###
+
+def calculate_and_display_stats(data):
+    """Calculates and displays basic statistics for the input data."""
+    
+    # Task 4: Input Check and Conversion
+    if isinstance(data, list):
+        try:
+            data = np.array(data)
+        except Exception as e:
+            print(f"Error: Could not convert list to NumPy array: {e}")
+            return
+    elif not isinstance(data, np.ndarray):
+        print("Error: Input must be a list or NumPy array.")
+        return
+    
+    if data.ndim != 1 or data.size == 0:
+        print("Error: Input array must be non-empty and one-dimensional.")
+        return
+        
+    # Task 1: Calculations
+    mean_val = np.mean(data)
+    median_val = np.median(data)
+    std_val = np.std(data)
+
+    # Task 2: Pretty Print
+    print("\n--- Basic Statistics Results ---")
+    print(f"Input Size: {data.size}")
+    print(f"Mean: {mean_val:.4f}")
+    print(f"Median: {median_val:.4f}")
+    print(f"Standard Deviation: {std_val:.4f}")
+    print("--------------------------------")
+    
+    return mean_val, median_val, data
